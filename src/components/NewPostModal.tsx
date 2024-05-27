@@ -15,8 +15,8 @@ const NewPostModal = ({
   function handlePostCreate(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setPostModalOpen(false);
-    const title = e.currentTarget.title.valueOf;
-    const body = e.currentTarget.body.valueOf;
+    const title = e.currentTarget.postTitle.value;
+    const body = e.currentTarget.body.value;
     const id = uuidv4();
     fetch("https://blog-backend-adqx.onrender.com/add-post", {
       method: "POST",
@@ -43,10 +43,10 @@ const NewPostModal = ({
         className="flex flex-col gap-4 items-stretch"
         onSubmit={handlePostCreate}
       >
-        <label htmlFor="title">Post Title</label>
+        <label htmlFor="postTitle">Post Title</label>
         <input
           type="text"
-          id="title"
+          id="postTitle"
           placeholder="Enter Post Title"
           className="h-8 text-gray-900 text-lg p-2"
           required
