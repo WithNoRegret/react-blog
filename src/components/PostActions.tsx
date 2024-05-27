@@ -1,7 +1,12 @@
 import { useState } from "react";
-import ReactModal from "react-modal";
+import NewPostModal from "./NewPostModal";
+import { Post } from "../interfaces";
 
-const PostActions = () => {
+interface PostActionsProps {
+  setPosts: React.Dispatch<React.SetStateAction<Post[]>>;
+}
+
+const PostActions = ({ setPosts }: PostActionsProps) => {
   const [postModalOpen, setPostModalOpen] = useState<boolean>(false);
   return (
     <div className="mb-8">
@@ -11,14 +16,11 @@ const PostActions = () => {
       >
         New Post
       </button>
-      <ReactModal isOpen={postModalOpen}>
-        <button
-          className="absolute top-4 right-4 rounded-full hover:opacity-75"
-          onClick={() => setPostModalOpen(false)}
-        >
-          <img src="/close.svg" alt="close" className="h-8" />
-        </button>
-      </ReactModal>
+      <NewPostModal
+        postModalOpen={postModalOpen}
+        setPostModalOpen={setPostModalOpen}
+        setPosts={setPosts}
+      />
     </div>
   );
 };
