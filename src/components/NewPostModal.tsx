@@ -1,5 +1,6 @@
 import ReactModal from "react-modal";
 import { v4 as uuidv4 } from "uuid";
+import { Post } from "../interfaces";
 
 interface NewPostModalProps {
   postModalOpen: boolean;
@@ -14,8 +15,8 @@ const NewPostModal = ({
   function handlePostCreate(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setPostModalOpen(false);
-    const title = e.currentTarget.title.value;
-    const body = e.currentTarget.body.value;
+    const title = e.currentTarget.title.valueOf;
+    const body = e.currentTarget.body.valueOf;
     const id = uuidv4();
     fetch("https://blog-backend-adqx.onrender.com/add-post", {
       method: "POST",
